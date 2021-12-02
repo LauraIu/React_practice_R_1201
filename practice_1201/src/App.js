@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import { result } from 'lodash';
 
 function zeroBeforeNumbers (num) {
     
@@ -31,24 +32,26 @@ function zeroBeforeNumbers (num) {
 
 function App () {
     
+
     const [val, setVal] = useState ("");
     const [numList, setNumList] = useState([]);   
 
     const clickHandler =() => {
-        let result = zeroBeforeNumbers (val);
-        setNumList (result)
+        let result = zeroBeforeNumbers(val);
+        setNumList(result);
     }
 
     return (
         <div className="app-conatiner">
-            <div className="container">                
-                <input type="number" placeholder="Enter your number" value={val} onChange={(e) => setVal(e.target.value)} />
-                <button onClick={ clickHandler } >Submit</button>                              
+            <div className="input-container">                                
+                    <input type="number" placeholder="Enter your number" value={val} onChange={(e) => setVal(e.target.value)} />
+                    <button onClick={ clickHandler } >Submit</button>                
             </div>
-                <p>{ numList.map(numItem => (
-                    <p>{ numItem }</p>)
-                )}
-                </p>
+            
+            <div className="result-container"> { numList.map(numItems => (
+                <p className="numbers-container" key={numList.id}>{ numItems }</p>)
+            )}
+            </div>
         </div>
     );
   
